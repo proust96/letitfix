@@ -1,7 +1,7 @@
 var problem_name = "";
 
 $( document ).ready(function() {
-    displayBigOne() ;
+    displayFirstSteps();
 });
 
 jQuery.fn.d3Click = function () {
@@ -11,10 +11,34 @@ jQuery.fn.d3Click = function () {
     });
 };
 
+function botSays(text, n){
+    setTimeout(
+        function(){
+            let mes = $("#flow").append('<div class="message bot"></div>');
+            mes.children().last().append('<span class="mleft">'+text+'</span>');
+            scrollToMessage(500);
+        }, n);
+}
+
+function userSays(text, n){
+    setTimeout(
+        function(){
+            let mes = $("#flow").append('<div class="message local"></div>');
+            mes.children().last().append('<span class="mright">'+text+'</span>');
+            scrollToMessage(500);
+        }, n);
+}
+
 function displayFirstSteps(){
-    let text = "Hey, I'm your personnal bot. What can I do for you ?";
-    let mes = $("#flow").append('<div class="message bot"></div>');
-    mes.children().last().append('<span class="mleft">'+text+'</span>');
+    botSays("Hey, I'm your personnal bot. What can I do for you ?", 1000);
+    userSays("Hi, I need some assistance.", 2500);
+    botSays("Sure, let me try to help you. Can you try to locate your problem in the following diagram ?", 4000);
+    setTimeout(function(){
+        let mes = $("#flow").append('<div class="message bot" id="svg_map"></div>');
+        mes.children().last().append('<span class="mleft"><svg width="470" height="470"></svg></span>');
+        displayBigOne();
+        scrollToMessage(500);
+    }, 5500)
 }
 
 function selectCircle(d){
@@ -29,14 +53,18 @@ function selectCircle(d){
     });
 }
 
+function scrollToMessage(n){
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $("#flow").children().last().offset().top
+    }, n, "linear"); 
+}
+
 function displayYesNo(){
     let text_y = "<span class='answer yes' onclick='startSteps()'>Yes, exactly.</span>";
     let text_n = "<span class='answer no' onclick='showSVGMap()'>No, let me choose another option.</span>";
     let mes = $("#flow").append('<div class="message local" id="m_yes_no"></div>');
-    mes.children().last().append('<span class="mright" style="width:315px;height:85px">'+text_y+text_n+'</span>');
-    $([document.documentElement, document.body]).animate({
-        scrollTop: mes.children().last().offset().top
-    }, 2000, "linear");    
+    mes.children().last().append('<span class="mright" style="width:315px;height:85px">'+text_y+text_n+'</span>');   
+    scrollToMessage(2000);
 }
 
 function startSteps(){
