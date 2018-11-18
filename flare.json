@@ -1,0 +1,29 @@
+{
+ "name": "flare",
+ "children": [
+  {
+   "name": "analytics",
+   "children": [
+    {
+     "name": "cluster",
+     "children": [
+      {"name": "AgglomerativeCluster", "size": 1},
+      {"name": "CommunityStructure", "size": 1},
+      {"name": "HierarchicalCluster", "size": 2},
+      {"name": "MergeEdge", "size": 1}
+     ]
+    },
+    {
+     "name": "cluster",
+     "children": [
+      {"name": "AgglomerativeCluster", "size": 1},
+      {"name": "CommunityStructure", "size": 1},
+      {"name": "HierarchicalCluster", "size": 2},
+      {"name": "MergeEdge", "size": 2}
+     ]
+    }
+   ]
+  }
+  ]
+
+}

@@ -1,0 +1,84 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica";
+    -ms-overflow-style:none;
+}
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+#flow{
+    width: 700px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+.message{
+    width: 70%;
+    margin: 5px 0;
+}
+.message span{
+    padding: 5px;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 11px;
+}
+.message.bot {
+    align-self: flex-start;
+}
+.message.local {
+    align-self: flex-end;
+    text-align: right;
+}
+.message .mleft {
+    background-color: gainsboro;
+    border-bottom-left-radius: 0;
+}
+.message .mright {
+    background-color: cornflowerblue;
+    border-bottom-right-radius: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.node {
+    cursor: pointer;
+  }
+  
+  .node:hover {
+    stroke: #000;
+    stroke-width: 1.5px;
+  }
+  
+  .node--leaf {
+    fill: white;
+  }
+  
+  .label {
+    font: 12px Helvetica, Arial, sans-serif;
+    text-anchor: middle;
+    text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+  }
+  
+  .label,
+  .node--root,
+  .node--leaf {
+    pointer-events: none;
+  }
