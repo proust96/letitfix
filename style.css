@@ -1,8 +1,9 @@
 html,body{
     margin: 0;
     padding: 0;
-    font-family: "Helvetica";
+    font-family: 'Roboto', "Helvetica";
     -ms-overflow-style:none;
+    background-color: #ecf8fc;
 }
 ::-webkit-scrollbar {
     display: none;
@@ -15,6 +16,7 @@ html,body{
     width: 700px;
     height:2000px;
     margin: auto;
+    margin-top: 110px;
     display: flex;
     flex-direction: column;
 }
@@ -40,7 +42,7 @@ html,body{
     border-bottom-left-radius: 0;
 }
 .message .mright {
-    background-color: cornflowerblue;
+    background-color: #00abe1;
     border-bottom-right-radius: 0;
 }
 .message .mt50 {
@@ -83,8 +85,56 @@ span.answer.no:hover {
     font-size: 1.1em;
     border: 1px solid #c70e0ebf;
 }
-
-
+.lightblueLine{
+    width: 10px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 40px;
+    background-color: #00ABE1;
+}
+.darkblueLine{
+    width: 10px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 60px;
+    background-color: #006CB2;
+}
+.capgeminiLogo img {
+    width: 180px;
+    height: auto;
+    position: fixed;
+    top: 30px;
+    left: 120px;
+}
+.letItFixLogo {
+    width: 700px;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    margin-left: -350px;
+}
+.letItFixLogo .logo1{
+    height: 70px;
+    background-color: #006cb2;
+    text-align: center;
+}
+.letItFixLogo .logo1 span {
+    color: white;
+    display: inline-block;
+    margin-top: 23px;
+    font-size: 2.7em;
+    font-weight: 700;
+}
+.letItFixLogo .logo2{
+    height: 0px;
+    width: 0;
+    border-left: 350px solid transparent;
+	border-right: 350px solid transparent;
+	border-top: 30px solid #006cb2;
+}
 
 
 
@@ -97,9 +147,8 @@ span.answer.no:hover {
     stroke-width: 1.5px;
   }
   .label {
-    font: 12px Helvetica, Arial, sans-serif;
+    font: 16px Helvetica, Arial, sans-serif;
     text-anchor: middle;
-    text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
   }
   
   .label,

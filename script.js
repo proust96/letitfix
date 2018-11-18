@@ -73,7 +73,7 @@ function displayYesNoBotHelp(){
     let text_n = "<span class='answer no' onclick='botHelp(\"No, I'm disappointed.\")'>No, I'm disappointed.</span>";
     let mes = $("#flow").append('<div class="message local" id="m_yes_no_bot"></div>');
     mes.children().last().append('<span class="mright botReview" style="width:330px;height:127px">'+text_y+text_m+text_n+'</span>');   
-    scrollToMessage(2000);
+    scrollToMessage(500);
 }
 
 function botHelp(t){
@@ -99,7 +99,7 @@ function startSteps(){
 function showSVGMap(){
     $('.node--root').next().d3Click();
     $([document.documentElement, document.body]).animate({
-        scrollTop: $("#svg_map").offset().top 
+        scrollTop: $("#svg_map").offset().top - 110
     }, 1000, "linear");  
     $("#m_confirm").remove(); 
     $("#m_yes_no").remove(); 
@@ -113,7 +113,7 @@ function displayBigOne() {
 
     var color = d3.scaleLinear()
         .domain([-1, 5])
-        .range(["hsl(0,0%,86%)", "hsl(228,30%,40%)"])
+        .range(["hsl(0,0%,86%)", "hsl(201,40%,47%)"])
         .interpolate(d3.interpolateHcl);
 
     var pack = d3.pack()
