@@ -6,11 +6,11 @@ html,body{
 }
 ::-webkit-scrollbar {
     display: none;
-  }
+}
   
   ::-webkit-scrollbar-button {
     display: none;
-  }
+}
 #flow{
     width: 700px;
     margin: auto;
@@ -21,7 +21,7 @@ html,body{
     width: 70%;
     margin: 5px 0;
 }
-.message span{
+.message > span{
     padding: 5px;
     display: inline-block;
     padding: 5px 10px;
@@ -42,17 +42,31 @@ html,body{
     background-color: cornflowerblue;
     border-bottom-right-radius: 0;
 }
-
-
-
-
-
-
-
-
-
-
-
+span.answer {
+    display: block;
+    padding: 8px 15px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+span.answer.yes {
+    background-color: #10b80bbf;
+}
+span.answer.yes:hover {
+    background-color: #10b80bed;
+    font-size: 1.1em;
+    border: 1px solid #10b80bbf;
+}
+span.answer.no {
+    background-color: #c70e0ebf;
+}
+span.answer.no:hover {
+    background-color: #c70e0eed;
+    font-size: 1.1em;
+    border: 1px solid #c70e0ebf;
+}
 
 
 
@@ -66,11 +80,6 @@ html,body{
     stroke: #000;
     stroke-width: 1.5px;
   }
-  
-  .node--leaf {
-    fill: white;
-  }
-  
   .label {
     font: 12px Helvetica, Arial, sans-serif;
     text-anchor: middle;
@@ -78,7 +87,6 @@ html,body{
   }
   
   .label,
-  .node--root,
-  .node--leaf {
+  .node--root {
     pointer-events: none;
   }

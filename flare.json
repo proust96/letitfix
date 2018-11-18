@@ -8,7 +8,7 @@
      "name": "cluster",
      "children": [
       {"name": "AgglomerativeCluster", "size": 1},
-      {"name": "CommunityStructure", "size": 1},
+      {"name": "CommunityStructure", "size": 1, "affiche": "test"},
       {"name": "HierarchicalCluster", "size": 2},
       {"name": "MergeEdge", "size": 1}
      ]

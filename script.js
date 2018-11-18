@@ -2,6 +2,28 @@ $( document ).ready(function() {
     displayBigOne() ;
 });
 
+
+function selectCircle(d){
+    $text_confirmation = "You have a problem with " + d.data.name + ". Is that right ?";
+    $mes = $("#flow").append('<div class="message bot"></div>');
+    $mes.children().last().append('<span class="mleft">'+$text_confirmation+'</span>');
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $mes.children().last().offset().top
+    }, 2000, "linear").promise().then(function(){
+        displayYesNo();
+    });
+}
+
+function displayYesNo(){
+    $text_oui = "<span class='answer yes'>Yes, exactly.</span>";
+    $text_non = "<span class='answer no'>No, let me choose another option.</span>";
+    $mes = $("#flow").append('<div class="message local"></div>');
+    $mes.children().last().append('<span class="mright" style="width:315px;height:85px">'+$text_oui+$text_non+'</span>');
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $mes.children().last().offset().top
+    }, 2000, "linear");    
+}
+
 function displayBigOne() {
     var svg = d3.select("svg"),
     margin = 20,
@@ -24,34 +46,37 @@ function displayBigOne() {
         .sum(function(d) { return d.size; })
         .sort(function(a, b) { return b.value - a.value; });
 
-    var focus = root,
+    var focus = root.children[0],
         nodes = pack(root).descendants(),
         view;
 
     var circle = g.selectAll("circle")
         .data(nodes)
         .enter().append("circle")
-        .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
-        .style("fill", function(d) { return d.children ? color(d.depth) : null; })
-        .on("click", function(d) { if (focus !== d) zoom(d), d3.event.stopPropagation(); });
+        .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--final" : "node node--root"; })
+        .style("fill", function(d) { return color(d.depth); })
+        .on("click", function(d) { if (focus !== d) if (d.parent.parent === focus) {zoom(d.parent), d3.event.stopPropagation();}else{zoom(d), d3.event.stopPropagation(), console.log(d.data.name);} });
 
     var text = g.selectAll("text")
         .data(nodes)
         .enter().append("text")
         .attr("class", "label")
-        .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
-        .style("display", function(d) { return d.parent === root ? "inline" : "none"; })
+        .style("fill-opacity", function(d) { return d.parent != null ? d.parent.parent === root ? 1 : 0 : 0; })
+        .style("display", function(d) { return d.parent != null ? d.parent.parent === root ? "inline" : "none" : "none"; })
         .text(function(d) { return d.data.name; });
 
     var node = g.selectAll("circle,text");
 
-    svg
-        .style("background", color(-1))
-        .on("click", function() { zoom(root); });
-
     zoomTo([root.x, root.y, root.r * 2 + margin]);
 
     function zoom(d) {
+        if (d.height == 0){
+            setTimeout(
+                function(){
+                    selectCircle(d);
+                }, 1000);
+        }
+
         var focus0 = focus; focus = d;
 
         var transition = d3.transition()
@@ -61,11 +86,13 @@ function displayBigOne() {
             return function(t) { zoomTo(i(t)); };
             });
 
+        if (d.height != 0){
         transition.selectAll("text")
         .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
             .style("fill-opacity", function(d) { return d.parent === focus ? 1 : 0; })
             .on("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
             .on("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
+        }
     }
 
     function zoomTo(v) {
