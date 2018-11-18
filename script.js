@@ -1,7 +1,9 @@
 var problem_name = "";
 
 $( document ).ready(function() {
+    setTimeout(function(){
     displayFirstSteps();
+    },3000);
 });
 
 jQuery.fn.d3Click = function () {
@@ -30,7 +32,7 @@ function userSays(text, n){
 }
 
 function displayFirstSteps(){
-    botSays("Hey, I'm your personnal bot. What can I do for you ?", 1000);
+    botSays("Hey, I'm your personal chatbot. What can I do for you ?", 1000);
     userSays("Hi, I need some assistance.", 2500);
     botSays("Sure, let me try to help you. Can you try to locate your problem in the following diagram ?", 4000);
     setTimeout(function(){
@@ -92,11 +94,11 @@ function startSteps(){
         botSays("Perfect. Locate and click the <b>Reset your account</b> button.", 6200);
         botSays("Now, enter your email and follow the link you received.", 8400);
         botSays("We're almost there. In the input field, enter a new password. We suggest you use at least a number and a symbol. Do you need inspiration, why not use : diF89&4z@", 10600);
-        botSays("You are all set, your new password is now active.", 15000);
-        botSays("Did you like the way the chatbot helped you solve the issue?", 18000, "botReview mt50");
+        botSays("You are all set, your new password is now active.", 16000);
+        botSays("Did you like the way the chatbot helped you solve the issue?", 19000, "botReview mt50");
         setTimeout(function(){
             displayYesNoBotHelp();
-        },18500);
+        },19500);
     }else{
         botSays("I'm sorry, we don't have a solution for this issue yet, maybe try another one.", 0);
         setTimeout(function(){
@@ -129,7 +131,7 @@ function displayBigOne() {
         .size([diameter - margin, diameter - margin])
         .padding(2);
 
-    d3.json("https://api.myjson.com/bins/8gk8a", function(error, root) {
+    d3.json("https://api.myjson.com/bins/v7bje", function(error, root) {
     if (error) throw error;
 
     root = d3.hierarchy(root)

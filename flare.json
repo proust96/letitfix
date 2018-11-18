@@ -23,7 +23,7 @@
         ]
        },
        {
-        "name": "Personnal data",
+        "name": "Personal data",
         "children": [
          {"name": "Error in profile", "size": 1},
          {"name": "Change email adress", "size": 2},

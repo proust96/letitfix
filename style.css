@@ -62,11 +62,12 @@ span.answer {
     transition: all 0.2s ease;
 }
 span.answer.yes {
-    background-color: #10b80bbf;
+    background-color: #298b53bf;
 }
 span.answer.yes:hover {
-    background-color: #10b80bed;
+    background-color: #2eae65bf;
     font-size: 1.1em;
+    color: white;
     border: 1px solid #10b80bbf;
 }
 span.answer.meh {
@@ -75,15 +76,17 @@ span.answer.meh {
 span.answer.meh:hover {
     background-color: #525252;
     font-size: 1.1em;
+    color: white;
     border: 1px solid #777777;
 }
 span.answer.no {
-    background-color: #c70e0ebf;
+    background-color: #995e5ebf;
 }
 span.answer.no:hover {
-    background-color: #c70e0eed;
+    background-color: #cb3737bf;
     font-size: 1.1em;
-    border: 1px solid #c70e0ebf;
+    color: white;
+    border: 1px solid #b51e1ebf;
 }
 .letItFixLogo {
     width: 700px;
@@ -161,6 +164,7 @@ span.answer.no:hover {
   .label {
     font: 16px Helvetica, Arial, sans-serif;
     text-anchor: middle;
+    fill: white;
   }
   
   .label,
