@@ -1,27 +1,55 @@
+var problem_name = "";
+
 $( document ).ready(function() {
     displayBigOne() ;
 });
 
+jQuery.fn.d3Click = function () {
+    this.each(function (i, e) {
+      var evt = new MouseEvent("click");
+      e.dispatchEvent(evt);
+    });
+};
+
+function displayFirstSteps(){
+    let text = "Hey, I'm your personnal bot. What can I do for you ?";
+    let mes = $("#flow").append('<div class="message bot"></div>');
+    mes.children().last().append('<span class="mleft">'+text+'</span>');
+}
 
 function selectCircle(d){
-    $text_confirmation = "You have a problem with " + d.data.name + ". Is that right ?";
-    $mes = $("#flow").append('<div class="message bot"></div>');
-    $mes.children().last().append('<span class="mleft">'+$text_confirmation+'</span>');
+    problem_name = d.data.name;
+    let text_confirmation = "You have a problem with " + d.data.name + ". Is that right ?";
+    let mes = $("#flow").append('<div class="message bot" id="m_confirm"></div>');
+    mes.children().last().append('<span class="mleft">'+text_confirmation+'</span>');
     $([document.documentElement, document.body]).animate({
-        scrollTop: $mes.children().last().offset().top
-    }, 2000, "linear").promise().then(function(){
+        scrollTop: mes.children().last().offset().top
+    }, 1000, "linear").promise().then(function(){
         displayYesNo();
     });
 }
 
 function displayYesNo(){
-    $text_oui = "<span class='answer yes'>Yes, exactly.</span>";
-    $text_non = "<span class='answer no'>No, let me choose another option.</span>";
-    $mes = $("#flow").append('<div class="message local"></div>');
-    $mes.children().last().append('<span class="mright" style="width:315px;height:85px">'+$text_oui+$text_non+'</span>');
+    let text_y = "<span class='answer yes' onclick='startSteps()'>Yes, exactly.</span>";
+    let text_n = "<span class='answer no' onclick='showSVGMap()'>No, let me choose another option.</span>";
+    let mes = $("#flow").append('<div class="message local" id="m_yes_no"></div>');
+    mes.children().last().append('<span class="mright" style="width:315px;height:85px">'+text_y+text_n+'</span>');
     $([document.documentElement, document.body]).animate({
-        scrollTop: $mes.children().last().offset().top
+        scrollTop: mes.children().last().offset().top
     }, 2000, "linear");    
+}
+
+function startSteps(){
+    $('<span class="mright">Yes, exactly.</span>').replaceAll("#m_yes_no .mright");
+}
+
+function showSVGMap(){
+    $('.node--root').next().d3Click();
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $("#svg_map").offset().top
+    }, 1000, "linear");  
+    $("#m_confirm").remove(); 
+    $("#m_yes_no").remove(); 
 }
 
 function displayBigOne() {
