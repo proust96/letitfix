@@ -43,14 +43,16 @@ function displayFirstSteps(){
 
 function selectCircle(d){
     problem_name = d.data.name;
-    let text_confirmation = "You have a problem with " + d.data.name + ". Is that right ?";
-    let mes = $("#flow").append('<div class="message bot" id="m_confirm"></div>');
-    mes.children().last().append('<span class="mleft">'+text_confirmation+'</span>');
-    $([document.documentElement, document.body]).animate({
-        scrollTop: mes.children().last().offset().top-500
-    }, 1000, "linear").promise().then(function(){
-        displayYesNoConfirm();
-    });
+    
+        let text_confirmation = "You have a problem with " + d.data.name + ". Is that right ?";
+        let mes = $("#flow").append('<div class="message bot" id="m_confirm"></div>');
+        mes.children().last().append('<span class="mleft">'+text_confirmation+'</span>');
+        $([document.documentElement, document.body]).animate({
+            scrollTop: mes.children().last().offset().top-500
+        }, 1000, "linear").promise().then(function(){
+            displayYesNoConfirm();
+        });
+
 }
 
 function scrollToMessage(n){
@@ -82,18 +84,25 @@ function botHelp(t){
 }
 
 function startSteps(){
-    $('<span class="mright">Yes, exactly.</span>').replaceAll("#m_yes_no .mright");
-    botSays("I'll walk you through all the steps so you can set a new password.", 1000);
-    userSays("Great, thanks!", 2500);
-    botSays("First, navigate to this <a href='#'>page</a>.", 4000);
-    botSays("Perfect. Locate and click the <b>Reset your account</b> button.", 6200);
-    botSays("Now, enter your email and follow the link you received.", 8400);
-    botSays("We're almost there. In the input field, enter a new password. We suggest you use at least a number and a symbol. Do you need inspiration, why not use : diF89&4z@", 10600);
-    botSays("You are all set, your new password is now active.", 15000);
-    botSays("Did you like the way the chatbot helped you solve the issue?", 18000, "botReview mt50");
-    setTimeout(function(){
-        displayYesNoBotHelp();
-    },18500);
+    if (problem_name === "Lost password"){
+        $('<span class="mright">Yes, exactly.</span>').replaceAll("#m_yes_no .mright");
+        botSays("I'll walk you through all the steps so you can set a new password.", 1000);
+        userSays("Great, thanks!", 2500);
+        botSays("First, navigate to this <a href='#'>page</a>.", 4000);
+        botSays("Perfect. Locate and click the <b>Reset your account</b> button.", 6200);
+        botSays("Now, enter your email and follow the link you received.", 8400);
+        botSays("We're almost there. In the input field, enter a new password. We suggest you use at least a number and a symbol. Do you need inspiration, why not use : diF89&4z@", 10600);
+        botSays("You are all set, your new password is now active.", 15000);
+        botSays("Did you like the way the chatbot helped you solve the issue?", 18000, "botReview mt50");
+        setTimeout(function(){
+            displayYesNoBotHelp();
+        },18500);
+    }else{
+        botSays("I'm sorry, we don't have a solution for this issue yet, maybe try another one.", 0);
+        setTimeout(function(){
+            showSVGMap();
+        },2000);
+    }
 }
 
 function showSVGMap(){

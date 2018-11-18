@@ -85,29 +85,6 @@ span.answer.no:hover {
     font-size: 1.1em;
     border: 1px solid #c70e0ebf;
 }
-.lightblueLine{
-    width: 10px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    right: 40px;
-    background-color: #00ABE1;
-}
-.darkblueLine{
-    width: 10px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    right: 60px;
-    background-color: #006CB2;
-}
-.capgeminiLogo img {
-    width: 180px;
-    height: auto;
-    position: fixed;
-    top: 30px;
-    left: 120px;
-}
 .letItFixLogo {
     width: 700px;
     height: 100px;
@@ -135,8 +112,43 @@ span.answer.no:hover {
 	border-right: 350px solid transparent;
 	border-top: 30px solid #006cb2;
 }
-
-
+.lightblueLine{
+    width: 10px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 40px;
+    background-color: #00ABE1;
+    display: block;
+}
+.darkblueLine{
+    width: 10px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 60px;
+    background-color: #006CB2;
+    display: block;
+}
+.capgeminiLogo img {
+    width: 180px;
+    height: auto;
+    position: fixed;
+    top: 30px;
+    left: 120px; /*4% */
+    display: block;
+}
+@media only screen and (max-width: 1170px) {
+    .lightblueLine{
+        display: none;
+    }
+    .darkblueLine{
+        display: none;
+    }
+    .capgeminiLogo img {
+        display: none;
+    }
+}
 
 .node {
     cursor: pointer;
