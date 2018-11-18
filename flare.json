@@ -2,24 +2,52 @@
  "name": "flare",
  "children": [
   {
-   "name": "analytics",
+   "name": "Support",
    "children": [
     {
-     "name": "cluster",
+     "name": "My Account",
      "children": [
-      {"name": "AgglomerativeCluster", "size": 1},
-      {"name": "CommunityStructure", "size": 1, "affiche": "test"},
-      {"name": "HierarchicalCluster", "size": 2},
-      {"name": "MergeEdge", "size": 1}
+      {
+        "name": "Connection",
+        "children": [
+         {"name": "Lost password", "size": 3},
+         {"name": "Lost username", "size": 2},
+         {"name": "Wait for login page", "size": 1}
+        ]
+       },
+       {
+        "name": "My Plan",
+        "children": [
+         {"name": "I paid but it doesn't show", "size": 3},
+         {"name": "What's included", "size": 1}
+        ]
+       },
+       {
+        "name": "Personnal data",
+        "children": [
+         {"name": "Error in profile", "size": 1},
+         {"name": "Change email adress", "size": 2},
+         {"name": "Change mail adress", "size": 1}
+        ]
+       }
      ]
     },
     {
-     "name": "cluster",
+     "name": "Web",
      "children": [
-      {"name": "AgglomerativeCluster", "size": 1},
-      {"name": "CommunityStructure", "size": 1},
-      {"name": "HierarchicalCluster", "size": 2},
-      {"name": "MergeEdge", "size": 2}
+      {"name": "Issue", "size": 3},
+      {"name": "Issue", "size": 1},
+      {"name": "Issue", "size": 2},
+      {"name": "Issue", "size": 2}
+     ]
+    },
+    {
+     "name": "Mobile",
+     "children": [
+      {"name": "Issue", "size": 1},
+      {"name": "Issue", "size": 1},
+      {"name": "Issue", "size": 3},
+      {"name": "Issue", "size": 1}
      ]
     }
    ]

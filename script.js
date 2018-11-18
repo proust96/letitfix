@@ -120,7 +120,7 @@ function displayBigOne() {
         .size([diameter - margin, diameter - margin])
         .padding(2);
 
-    d3.json("https://api.myjson.com/bins/zsjua", function(error, root) {
+    d3.json("https://api.myjson.com/bins/8gk8a", function(error, root) {
     if (error) throw error;
 
     root = d3.hierarchy(root)
@@ -136,7 +136,7 @@ function displayBigOne() {
         .enter().append("circle")
         .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--final" : "node node--root"; })
         .style("fill", function(d) { return color(d.depth); })
-        .on("click", function(d) { if (focus !== d) if (d.parent.parent === focus) {zoom(d.parent), d3.event.stopPropagation();}else{zoom(d), d3.event.stopPropagation(), console.log(d.data.name);} });
+        .on("click", function(d) { if (focus !== d) if (d.parent.parent === focus || (d.parent.parent != null && d.parent.parent.parent === focus)) {zoom(d.parent), d3.event.stopPropagation();}else{zoom(d), d3.event.stopPropagation(), console.log(d.data.name);} });
 
     var text = g.selectAll("text")
         .data(nodes)
