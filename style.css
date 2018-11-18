@@ -13,6 +13,7 @@ html,body{
 }
 #flow{
     width: 700px;
+    height:2000px;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -42,6 +43,13 @@ html,body{
     background-color: cornflowerblue;
     border-bottom-right-radius: 0;
 }
+.message .mt50 {
+    margin-top: 50px;
+}
+.message .botReview {
+    background-color: #14323f;
+    color: white;
+}
 span.answer {
     display: block;
     padding: 8px 15px;
@@ -58,6 +66,14 @@ span.answer.yes:hover {
     background-color: #10b80bed;
     font-size: 1.1em;
     border: 1px solid #10b80bbf;
+}
+span.answer.meh {
+    background-color: #777777;
+}
+span.answer.meh:hover {
+    background-color: #525252;
+    font-size: 1.1em;
+    border: 1px solid #777777;
 }
 span.answer.no {
     background-color: #c70e0ebf;

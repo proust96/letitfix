@@ -11,11 +11,11 @@ jQuery.fn.d3Click = function () {
     });
 };
 
-function botSays(text, n){
+function botSays(text, n, className){
     setTimeout(
         function(){
             let mes = $("#flow").append('<div class="message bot"></div>');
-            mes.children().last().append('<span class="mleft">'+text+'</span>');
+            mes.children().last().append('<span class="mleft '+className+'">'+text+'</span>');
             scrollToMessage(500);
         }, n);
 }
@@ -47,34 +47,59 @@ function selectCircle(d){
     let mes = $("#flow").append('<div class="message bot" id="m_confirm"></div>');
     mes.children().last().append('<span class="mleft">'+text_confirmation+'</span>');
     $([document.documentElement, document.body]).animate({
-        scrollTop: mes.children().last().offset().top
+        scrollTop: mes.children().last().offset().top-500
     }, 1000, "linear").promise().then(function(){
-        displayYesNo();
+        displayYesNoConfirm();
     });
 }
 
 function scrollToMessage(n){
     $([document.documentElement, document.body]).animate({
-        scrollTop: $("#flow").children().last().offset().top
+        scrollTop: $("#flow").children().last().offset().top-500
     }, n, "linear"); 
 }
 
-function displayYesNo(){
+function displayYesNoConfirm(){
     let text_y = "<span class='answer yes' onclick='startSteps()'>Yes, exactly.</span>";
     let text_n = "<span class='answer no' onclick='showSVGMap()'>No, let me choose another option.</span>";
     let mes = $("#flow").append('<div class="message local" id="m_yes_no"></div>');
     mes.children().last().append('<span class="mright" style="width:315px;height:85px">'+text_y+text_n+'</span>');   
+    scrollToMessage(500);
+}
+
+function displayYesNoBotHelp(){
+    let text_y = "<span class='answer yes' onclick='botHelp(\"Yes, it did a great job.\")'>Yes, it did a great job.</span>";
+    let text_m = "<span class='answer meh' onclick='botHelp(\"It could do better.\")'>It could do better.</span>";
+    let text_n = "<span class='answer no' onclick='botHelp(\"No, I'm disappointed.\")'>No, I'm disappointed.</span>";
+    let mes = $("#flow").append('<div class="message local" id="m_yes_no_bot"></div>');
+    mes.children().last().append('<span class="mright botReview" style="width:330px;height:127px">'+text_y+text_m+text_n+'</span>');   
     scrollToMessage(2000);
+}
+
+function botHelp(t){
+    $('<span class="mright">'+t+'</span>').replaceAll("#m_yes_no_bot .mright");
+    botSays("Thanks for the feedback.", 500, "botReview");
 }
 
 function startSteps(){
     $('<span class="mright">Yes, exactly.</span>').replaceAll("#m_yes_no .mright");
+    botSays("I'll walk you through all the steps so you can set a new password.", 1000);
+    userSays("Great, thanks!", 2500);
+    botSays("First, navigate to this <a href='#'>page</a>.", 4000);
+    botSays("Perfect. Locate and click the <b>Reset your account</b> button.", 6200);
+    botSays("Now, enter your email and follow the link you received.", 8400);
+    botSays("We're almost there. In the input field, enter a new password. We suggest you use at least a number and a symbol. Do you need inspiration, why not use : diF89&4z@", 10600);
+    botSays("You are all set, your new password is now active.", 15000);
+    botSays("Did you like the way the chatbot helped you solve the issue?", 18000, "botReview mt50");
+    setTimeout(function(){
+        displayYesNoBotHelp();
+    },18500);
 }
 
 function showSVGMap(){
     $('.node--root').next().d3Click();
     $([document.documentElement, document.body]).animate({
-        scrollTop: $("#svg_map").offset().top
+        scrollTop: $("#svg_map").offset().top 
     }, 1000, "linear");  
     $("#m_confirm").remove(); 
     $("#m_yes_no").remove(); 
