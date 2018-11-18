@@ -20,6 +20,9 @@ html,body{
     display: flex;
     flex-direction: column;
 }
+
+/*messages*/
+
 .message{
     width: 70%;
     margin: 5px 0;
@@ -52,6 +55,9 @@ html,body{
     background-color: #14323f;
     color: white;
 }
+
+/*answers*/
+
 span.answer {
     display: block;
     padding: 8px 15px;
@@ -88,6 +94,9 @@ span.answer.no:hover {
     color: white;
     border: 1px solid #b51e1ebf;
 }
+
+/*Lines and logos*/
+
 .letItFixLogo {
     width: 700px;
     height: 100px;
@@ -138,9 +147,12 @@ span.answer.no:hover {
     height: auto;
     position: fixed;
     top: 30px;
-    left: 120px; /*4% */
+    left: 4%;
     display: block;
 }
+
+/*Remove the lines and capgemini logo on smaller screens*/
+
 @media only screen and (max-width: 1170px) {
     .lightblueLine{
         display: none;
@@ -153,21 +165,23 @@ span.answer.no:hover {
     }
 }
 
+/*D3 svg styling*/
+
 .node {
     cursor: pointer;
-  }
+}
   
-  .node:hover {
-    stroke: #000;
-    stroke-width: 1.5px;
-  }
-  .label {
-    font: 16px Helvetica, Arial, sans-serif;
-    text-anchor: middle;
-    fill: white;
-  }
-  
-  .label,
-  .node--root {
-    pointer-events: none;
-  }
+.node:hover {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+.label {
+  font: 16px Helvetica, Arial, sans-serif;
+  text-anchor: middle;
+  fill: white;
+}
+
+.label,
+.node--root {
+  pointer-events: none;
+}

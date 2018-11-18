@@ -2,16 +2,75 @@ var problem_name = "";
 
 $( document ).ready(function() {
     setTimeout(function(){
-    displayFirstSteps();
-    },3000);
+        displayFirstSteps();
+    },1500);
 });
 
-jQuery.fn.d3Click = function () {
-    this.each(function (i, e) {
-      var evt = new MouseEvent("click");
-      e.dispatchEvent(evt);
-    });
-};
+
+/**
+ * Start of the workflow
+ */
+function displayFirstSteps(){
+    botSays("Hey, I'm your personal chatbot. What can I do for you ?", 1000);
+    userSays("Hi, I need some assistance.", 2500);
+    botSays("Sure, let me try to help you. Can you try to locate your problem in the following diagram ?", 4000);
+    setTimeout(function(){
+        let mes = $("#flow").append('<div class="message bot" id="svg_map"></div>');
+        mes.children().last().append('<span class="mleft"><svg width="470" height="470"></svg></span>');
+        displayBigOne();
+        scrollToMessage(500);
+    }, 5500)
+}
+
+
+/**
+ * Confirm node selection
+ * @param {node} d 
+ */
+function selectCircle(d){
+    problem_name = d.data.name;
+    
+        let text_confirmation = "You have a problem with " + d.data.name + ". Is that right ?";
+        let mes = $("#flow").append('<div class="message bot" id="m_confirm"></div>');
+        mes.children().last().append('<span class="mleft">'+text_confirmation+'</span>');
+        $([document.documentElement, document.body]).animate({
+            scrollTop: mes.children().last().offset().top-500
+        }, 1000, "linear").promise().then(function(){
+            displayYesNoConfirm();
+        });
+
+}
+
+//Display questions with multiple choices
+
+function displayYesNoConfirm(){
+    let text_y = "<span class='answer yes' onclick='startSteps()'>Yes, exactly.</span>";
+    let text_n = "<span class='answer no' onclick='showSVGMap()'>No, let me choose another option.</span>";
+    let mes = $("#flow").append('<div class="message local" id="m_yes_no"></div>');
+    mes.children().last().append('<span class="mright" style="width:315px;height:85px">'+text_y+text_n+'</span>');   
+    scrollToMessage(500);
+}
+
+function displayYesNoBotHelp(){
+    let text_y = "<span class='answer yes' onclick='botHelp(\"Yes, it did a great job.\")'>Yes, it did a great job.</span>";
+    let text_m = "<span class='answer meh' onclick='botHelp(\"It could do better.\")'>It could do better.</span>";
+    let text_n = "<span class='answer no' onclick='botHelp(\"No, I'm disappointed.\")'>No, I'm disappointed.</span>";
+    let mes = $("#flow").append('<div class="message local" id="m_yes_no_bot"></div>');
+    mes.children().last().append('<span class="mright botReview" style="width:330px;height:127px">'+text_y+text_m+text_n+'</span>');   
+    scrollToMessage(500);
+}
+
+/**
+ * Thanks for the feedback
+ * @param {string} t 
+ */
+function botHelp(t){
+    $('<span class="mright">'+t+'</span>').replaceAll("#m_yes_no_bot .mright");
+    botSays("Thanks for the feedback.", 500, "botReview");
+}
+
+
+//Generic functions to interact with messages 
 
 function botSays(text, n, className){
     setTimeout(
@@ -31,60 +90,15 @@ function userSays(text, n){
         }, n);
 }
 
-function displayFirstSteps(){
-    botSays("Hey, I'm your personal chatbot. What can I do for you ?", 1000);
-    userSays("Hi, I need some assistance.", 2500);
-    botSays("Sure, let me try to help you. Can you try to locate your problem in the following diagram ?", 4000);
-    setTimeout(function(){
-        let mes = $("#flow").append('<div class="message bot" id="svg_map"></div>');
-        mes.children().last().append('<span class="mleft"><svg width="470" height="470"></svg></span>');
-        displayBigOne();
-        scrollToMessage(500);
-    }, 5500)
-}
-
-function selectCircle(d){
-    problem_name = d.data.name;
-    
-        let text_confirmation = "You have a problem with " + d.data.name + ". Is that right ?";
-        let mes = $("#flow").append('<div class="message bot" id="m_confirm"></div>');
-        mes.children().last().append('<span class="mleft">'+text_confirmation+'</span>');
-        $([document.documentElement, document.body]).animate({
-            scrollTop: mes.children().last().offset().top-500
-        }, 1000, "linear").promise().then(function(){
-            displayYesNoConfirm();
-        });
-
-}
-
 function scrollToMessage(n){
     $([document.documentElement, document.body]).animate({
         scrollTop: $("#flow").children().last().offset().top-500
     }, n, "linear"); 
 }
 
-function displayYesNoConfirm(){
-    let text_y = "<span class='answer yes' onclick='startSteps()'>Yes, exactly.</span>";
-    let text_n = "<span class='answer no' onclick='showSVGMap()'>No, let me choose another option.</span>";
-    let mes = $("#flow").append('<div class="message local" id="m_yes_no"></div>');
-    mes.children().last().append('<span class="mright" style="width:315px;height:85px">'+text_y+text_n+'</span>');   
-    scrollToMessage(500);
-}
-
-function displayYesNoBotHelp(){
-    let text_y = "<span class='answer yes' onclick='botHelp(\"Yes, it did a great job.\")'>Yes, it did a great job.</span>";
-    let text_m = "<span class='answer meh' onclick='botHelp(\"It could do better.\")'>It could do better.</span>";
-    let text_n = "<span class='answer no' onclick='botHelp(\"No, I'm disappointed.\")'>No, I'm disappointed.</span>";
-    let mes = $("#flow").append('<div class="message local" id="m_yes_no_bot"></div>');
-    mes.children().last().append('<span class="mright botReview" style="width:330px;height:127px">'+text_y+text_m+text_n+'</span>');   
-    scrollToMessage(500);
-}
-
-function botHelp(t){
-    $('<span class="mright">'+t+'</span>').replaceAll("#m_yes_no_bot .mright");
-    botSays("Thanks for the feedback.", 500, "botReview");
-}
-
+/**
+ * Demo step by step workflow
+ */
 function startSteps(){
     if (problem_name === "Lost password"){
         $('<span class="mright">Yes, exactly.</span>').replaceAll("#m_yes_no .mright");
@@ -107,6 +121,10 @@ function startSteps(){
     }
 }
 
+
+/**
+ * Scrolls to the issues map, removes answers
+ */
 function showSVGMap(){
     $('.node--root').next().d3Click();
     $([document.documentElement, document.body]).animate({
@@ -116,6 +134,10 @@ function showSVGMap(){
     $("#m_yes_no").remove(); 
 }
 
+
+/**
+ * Loads the issues map
+ */
 function displayBigOne() {
     var svg = d3.select("svg"),
     margin = 20,
@@ -131,7 +153,7 @@ function displayBigOne() {
         .size([diameter - margin, diameter - margin])
         .padding(2);
 
-    d3.json("https://api.myjson.com/bins/v7bje", function(error, root) {
+    d3.json("flare.json", function(error, root) {
     if (error) throw error;
 
     root = d3.hierarchy(root)
@@ -194,3 +216,11 @@ function displayBigOne() {
     }
     });
 }
+
+//the trigger click doesn't work on svg without
+jQuery.fn.d3Click = function () {
+    this.each(function (i, e) {
+      var evt = new MouseEvent("click");
+      e.dispatchEvent(evt);
+    });
+};
