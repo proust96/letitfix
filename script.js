@@ -169,7 +169,7 @@ function displayBigOne() {
         .enter().append("circle")
         .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--final" : "node node--root"; })
         .style("fill", function(d) { return color(d.depth); })
-        .on("click", function(d) { if (focus !== d) if (d.parent.parent === focus || (d.parent.parent != null && d.parent.parent.parent === focus)) {zoom(d.parent), d3.event.stopPropagation();}else{zoom(d), d3.event.stopPropagation(), console.log(d.data.name);} });
+        .on("click", function(d) { if (focus !== d) if (d.parent.parent != null && d.parent.parent.parent === focus) {zoom(d.parent.parent), d3.event.stopPropagation();}else{if (d.parent.parent === focus) {zoom(d.parent), d3.event.stopPropagation();}else{zoom(d), d3.event.stopPropagation(), console.log(d.data.name);}}});
 
     var text = g.selectAll("text")
         .data(nodes)
