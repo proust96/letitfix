@@ -170,17 +170,21 @@ span.answer.no:hover {
 .node {
     cursor: pointer;
 }
-  
 .node:hover {
   stroke: #000;
   stroke-width: 1.5px;
+}
+.node--final#snf {
+  fill: #b59d9d !important;
+}
+.label#snf_label {
+  font-weight: 600;
 }
 .label {
   font: 16px Helvetica, Arial, sans-serif;
   text-anchor: middle;
   fill: white;
 }
-
 .label,
 .node--root {
   pointer-events: none;

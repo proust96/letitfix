@@ -29,7 +29,7 @@ function displayFirstSteps(){
  */
 function selectCircle(d){
     problem_name = d.data.name;
-    
+    if (problem_name != "SNF"){
         let text_confirmation = "You have a problem with " + d.data.name + ". Is that right ?";
         let mes = $("#flow").append('<div class="message bot" id="m_confirm"></div>');
         mes.children().last().append('<span class="mleft">'+text_confirmation+'</span>');
@@ -38,7 +38,9 @@ function selectCircle(d){
         }, 1000, "linear").promise().then(function(){
             displayYesNoConfirm();
         });
-
+    }else{
+        botSays("I see you haven't found your issue on the map. What's your problem ?", 1000);
+    }
 }
 
 //Display questions with multiple choices
@@ -168,6 +170,7 @@ function displayBigOne() {
         .data(nodes)
         .enter().append("circle")
         .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--final" : "node node--root"; })
+        .attr("id", function(d) { return d.data.name == "SNF" ? "snf" : ""; })
         .style("fill", function(d) { return color(d.depth); })
         .on("click", function(d) { if (focus !== d) if (d.parent.parent != null && d.parent.parent.parent === focus) {zoom(d.parent.parent), d3.event.stopPropagation();}else{if (d.parent.parent === focus) {zoom(d.parent), d3.event.stopPropagation();}else{zoom(d), d3.event.stopPropagation(), console.log(d.data.name);}}});
 
@@ -175,9 +178,10 @@ function displayBigOne() {
         .data(nodes)
         .enter().append("text")
         .attr("class", "label")
+        .attr("id", function(d) { return d.data.name == "SNF" ? "snf_label" : ""; })
         .style("fill-opacity", function(d) { return d.parent != null ? d.parent.parent === root ? 1 : 0 : 0; })
         .style("display", function(d) { return d.parent != null ? d.parent.parent === root ? "inline" : "none" : "none"; })
-        .text(function(d) { return d.data.name; });
+        .text(function(d) { return d.data.name == "SNF" ? "Issue not found" : d.data.name ; });
 
     var node = g.selectAll("circle,text");
 

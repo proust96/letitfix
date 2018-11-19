@@ -4,6 +4,7 @@
   {
    "name": "Support",
    "children": [
+    {"name": "SNF", "size": 3},
     {
      "name": "My Account",
      "children": [
