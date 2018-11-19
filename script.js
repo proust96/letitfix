@@ -155,7 +155,7 @@ function displayBigOne() {
         .size([diameter - margin, diameter - margin])
         .padding(2);
 
-    d3.json("flare.json", function(error, root) {
+    d3.json("https://api.myjson.com/bins/gizh6", function(error, root) {
     if (error) throw error;
 
     root = d3.hierarchy(root)

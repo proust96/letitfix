@@ -12,6 +12,7 @@ html,body{
   ::-webkit-scrollbar-button {
     display: none;
 }
+
 #flow{
     width: 700px;
     height:2000px;

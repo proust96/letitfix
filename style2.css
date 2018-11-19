@@ -1,0 +1,226 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', "Helvetica";
+    -ms-overflow-style:none;
+}
+body{
+    background-image: url("img/back.png");
+    background-size: cover;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+  
+  ::-webkit-scrollbar-button {
+    display: none;
+}
+div#all {
+    width: 550px;
+    height: 650px;
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    /* padding: 10px; */
+    overflow: auto;
+    border: 2px solid #040404;
+    background-color: #fdfdfd;
+    box-shadow: 4px -5px #00000036;
+}
+div#title_box {
+    background-color: #000000;
+    position: fixed;
+    width: 540px;
+    height: 30px;
+    font-size: 1.1em;
+    color: white;
+    line-height: 30px;
+    padding-left: 10px;
+}
+#flow {
+    /* width: 700px; */
+    height: 2000px;
+    /* margin: auto; */
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    padding: 10px;
+}
+
+
+/*messages*/
+
+.message{
+    width: 70%;
+    margin: 5px 0;
+}
+.message > span{
+    padding: 5px;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 11px;
+}
+.message.bot {
+    align-self: flex-start;
+}
+.message.local {
+    align-self: flex-end;
+    text-align: right;
+}
+.message .mleft {
+    background-color: gainsboro;
+    border-bottom-left-radius: 0;
+}
+.message .mright {
+    background-color: #db0011;
+    border-bottom-right-radius: 0;
+    color: white;
+}
+.message .mt50 {
+    margin-top: 50px;
+}
+.message .botReview {
+    background-color: #14323f;
+    color: white;
+}
+.message span.link_page{
+    color: blue;
+    cursor: pointer;
+}
+
+/*answers*/
+
+span.answer {
+    display: block;
+    padding: 8px 15px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid black;
+}
+span.answer.yes {
+    background-color: #ffffff;
+    color: #151515;
+}
+span.answer.yes:hover {
+    background-color: #2eae65bf;
+    font-size: 1.1em;
+    color: white;
+    border: 1px solid #10b80bbf;
+}
+span.answer.meh {
+    background-color: #777777;
+}
+span.answer.meh:hover {
+    background-color: #525252;
+    font-size: 1.1em;
+    color: white;
+    border: 1px solid #777777;
+}
+span.answer.no {
+    background-color: #000000;
+}
+span.answer.no:hover {
+    background-color: #cb3737bf;
+    font-size: 1.1em;
+    color: white;
+    border: 1px solid #b51e1ebf;
+}
+
+/*Lines and logos*/
+
+.letItFixLogo {
+    width: 700px;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    margin-left: -350px;
+}
+.letItFixLogo .logo1{
+    height: 70px;
+    background-color: #006cb2;
+    text-align: center;
+}
+.letItFixLogo .logo1 span {
+    color: white;
+    display: inline-block;
+    margin-top: 23px;
+    font-size: 2.7em;
+    font-weight: 700;
+}
+.letItFixLogo .logo2{
+    height: 0px;
+    width: 0;
+    border-left: 350px solid transparent;
+	border-right: 350px solid transparent;
+	border-top: 30px solid #006cb2;
+}
+.lightblueLine{
+    width: 10px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 40px;
+    background-color: #00ABE1;
+    display: block;
+}
+.darkblueLine{
+    width: 10px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 60px;
+    background-color: #006CB2;
+    display: block;
+}
+.capgeminiLogo img {
+    width: 180px;
+    height: auto;
+    position: fixed;
+    top: 30px;
+    left: 4%;
+    display: block;
+}
+
+/*Remove the lines and capgemini logo on smaller screens*/
+
+@media only screen and (max-width: 1170px) {
+    .lightblueLine{
+        display: none;
+    }
+    .darkblueLine{
+        display: none;
+    }
+    .capgeminiLogo img {
+        display: none;
+    }
+}
+
+/*D3 svg styling*/
+
+.node {
+    cursor: pointer;
+}
+.node:hover {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+.node--final#snf {
+  fill: #ab0814 !important
+}
+.label#snf_label {
+  font-weight: 600;
+}
+.label {
+  font: 16px Helvetica, Arial, sans-serif;
+  text-anchor: middle;
+  fill: white;
+}
+.label,
+.node--root {
+  pointer-events: none;
+}
