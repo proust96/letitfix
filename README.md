@@ -4,7 +4,7 @@ Let it fix combines a innovative way for users to find their issues, a chatbot, 
 This allows the system to improve over time, in order to make the most out of the support team.
 
 ## Demo
-There is a live demo running here ([website](http://letitfix.poleno.fr/index2.html) and [video](https://www.youtube.com/watch?v=3xvSeUalX0U)), showcasing our issues map, and some chatbot interactions. As you can see, the chatbot is meant to be integrated as a plugin on the client's website.
+There is a live demo running here ([website](http://letitfix.poleno.fr/index2.html) and [video](https://www.youtube.com/watch?v=VFOvy8m9RGY)), showcasing our issues map, and some chatbot interactions. As you can see, the chatbot is meant to be integrated as a plugin on the client's website.
 
 [Here](https://github.com/proust96/chatbot_back) is a link to a back-end for our bot, which is a connector to IBM Cloud. We use the assistant to determine the user's intent, make small talk, understand basic commands (e.g. "go back one step").
 
